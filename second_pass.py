@@ -659,6 +659,13 @@ class SecondPassVisitor(ast_template.Visitor):
         self.DEDENT()
 
     def flush_main(self):
+        """Flushes the implicit main function if there is no main
+        function defined."""
+
+        if self.fv.functions.has_key("main"):
+            return
+
+
         self.in_main = True
 
         self.write('task main()')
