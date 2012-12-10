@@ -4,13 +4,12 @@
 #define SOUND 3
 #define MIC 3
 #define TOUCH 4
+#define COMPASS 5
 
 #define None 0
 
 
 int SensorTypes[]={0,0,0,0};
-
-
 
 inline int SensorVal(int s_) {
     
@@ -27,8 +26,6 @@ inline int SensorVal(int s_) {
     }
     
 }
-
-
 
 void DefineSensors(int s1,int s2,int s3,int s4) {
     
@@ -57,13 +54,27 @@ void DefineSensors(int s1,int s2,int s3,int s4) {
         } else if (sa[i]==TOUCH) {
             SetSensor(i,SENSOR_TOUCH);
             SensorTypes[i]=TOUCH;
+        } else if (sa[i] == COMPASS) {
+            SetSensorLowspeed(i);
+            SensorTypes[i] = COMPASS;
         }
-
-        
-    
-    
     }
-    
-    
 }
+
+void set_sensor(int port, int type) 
+{
+    SensorTypes[port] = type;
+    DefineSensors(SensorTypes[0], SensorTypes[1], SensorTypes[2], SensorTypes[3]);
+}
+
+void set_sensors(int s1, int s2, int s3, int s4) 
+{
+    DefineSensors(s1, s2, s3, s4);
+}
+
+inline int sensor(int port)
+{
+    return SensorVal(port);
+}
+
     
