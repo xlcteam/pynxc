@@ -17,7 +17,7 @@ class TextConversion(unittest.TestCase):
             
             testfile = nxc_filename.replace('./in/', './out/')
             
-            print "Testing %s" % input
+            print("Testing %s" % input)
             self.assertEqual(open(nxc_filename, 'r').read(), 
                                 open(testfile, 'r').read())
 
