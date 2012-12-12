@@ -307,6 +307,17 @@ class FirstPassVisitor(ast_template.Visitor):
             self.main.append(node)
             self.main_appended = True
 
+        a = node.tests[0][0].getChildren()
+        b = node.tests[0][1].getChildren()[0]
+
+        if a[0].getChildren()[0] == '__name__' and a[1] == '==' and \
+            a[2].getChildren()[0] == '__main__':
+
+            self.main.append(b)
+            self.main_appended = True
+            return
+
+
         for c, b in node.tests:
             self.v(c)
             self.v(b)

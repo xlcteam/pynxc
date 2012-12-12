@@ -38,6 +38,7 @@ class SecondPassVisitor(ast_template.Visitor):
         self.scope=['module']
         
         self.in_main = False
+        self.has_main = True if self.fv.functions.has_key('main') else False
         
         
     def type2str(self,datatype):
@@ -524,6 +525,15 @@ class SecondPassVisitor(ast_template.Visitor):
         if self.scope[-1] == "module" and not self.in_main:
             return
 
+        a = node.tests[0][0].getChildren()
+        b = node.tests[0][1].getChildren()[0]
+
+        # in case we've got __name__ == '__main__' 
+        # skip it, that means we've got main function
+        if a[0].getChildren()[0] == '__name__' and a[1] == '==' and \
+            a[2].getChildren()[0] == '__main__':
+            return
+
         flag=False
         for c, b in node.tests:
             if not flag:
@@ -662,9 +672,8 @@ class SecondPassVisitor(ast_template.Visitor):
         """Flushes the implicit main function if there is no main
         function defined."""
 
-        if self.fv.functions.has_key("main"):
+        if self.has_main:
             return
-
 
         self.in_main = True
 
