@@ -21,6 +21,8 @@ inline int SensorVal(int s_) {
     } else if (t_==ULTRASONIC) {
         Wait(100);
         return SensorUS(s_);
+    } else if (t_ == COMPASS) {
+        return SensorHTCompass(s_);
     } else {
         return Sensor(s_); 
     }
