@@ -38,7 +38,8 @@ class SecondPassVisitor(ast_template.Visitor):
         self.scope=['module']
         
         self.in_main = False
-        self.has_main = True if self.fv.functions.has_key('main') else False
+        self.has_main = True if self.fv.functions.has_key('main') \
+                                and not self.fv.main_twice else False
         
         
     def type2str(self,datatype):
@@ -263,6 +264,10 @@ class SecondPassVisitor(ast_template.Visitor):
         
     def visitFunction(self, node):
         self.scope.append('function')
+
+        tmp_name = node.name
+        if self.fv.main_twice and node.name == 'main':
+            node.name = 'main_'
     
         hasvar = haskw = hasone = hasboth = False
 
@@ -284,7 +289,8 @@ class SecondPassVisitor(ast_template.Visitor):
                 defargs.append((newargs.pop(), node.defaults.pop()))
             defargs.reverse()
 
-        func_type=self.fv.functions[node.name].datatype
+        func_type=self.fv.functions[tmp_name].datatype
+        
         if not func_type:
             func_type='void'
             
@@ -336,7 +342,7 @@ class SecondPassVisitor(ast_template.Visitor):
         self.write(") ")
         self.INDENT()
         
-        self.print_variable_definitions(self.fv.functions[node.name].variables)
+        self.print_variable_definitions(self.fv.functions[tmp_name].variables)
         
         self.v(node.code)
         self.DEDENT()
@@ -373,7 +379,11 @@ class SecondPassVisitor(ast_template.Visitor):
             self.NEWLINE()
             self.semicolon=False
             return
-        
+       
+        if self.fv.main_twice and node.node.name == 'main':
+            node.node.name = 'main_'
+
+
         self.v(node.node)
         self.write("(")
         for i in range(len(node.args)):

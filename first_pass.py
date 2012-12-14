@@ -30,6 +30,7 @@ class FirstPassVisitor(ast_template.Visitor):
 
         self.main = []
         self.main_appended = False
+        self.main_twice = False
         
         self.use_typedef=False
         
@@ -312,6 +313,9 @@ class FirstPassVisitor(ast_template.Visitor):
 
         if a[0].getChildren()[0] == '__name__' and a[1] == '==' and \
             a[2].getChildren()[0] == '__main__':
+
+            if self.functions.has_key('main'):
+                self.main_twice = True
 
             self.main.append(b)
             self.main_appended = True
