@@ -127,13 +127,15 @@ def main():
     parser.add_option('-B', '--bluetooth', dest="bluetooth",
                     help='enable bluetooth',default=False,
                     action="store_true")
+    parser.add_option('-q', '--quiet', dest="quiet",
+                    help='stay quiet (prints no output)',default=False,
+                    action="store_true")
     parser.add_option('--firmware', dest="firmware",
                       help='firmware version (105, 107, or 128)',default=config['firmware'])
     parser.add_option('--command',  dest="nxc",
                       help='what is the nxc/nqc command',default=nxc,
                       metavar="<command>")
-                      
-                  
+
     options, args = parser.parse_args()
     if len(args) < 1:
         parser.print_help()
@@ -162,7 +164,8 @@ def main():
         rxe_filename=root+".rxe"
         
         python_to_nxc(filename,nxc_filename,debug=options.debug)
-        print "Wrote %s." % (nxc_filename)
+        if not options.quiet:
+            print "Wrote %s." % (nxc_filename)
 
         if options.show_nxc:
             fid=open(nxc_filename)
@@ -179,7 +182,8 @@ def main():
                                                            pynxc_root,
                                                            options.firmware,
                                                            rxe_filename)
-            print cmd
+            if not options.quiet:
+                print cmd
             a=os.system(cmd)
     
             if options.download:
