@@ -2,7 +2,7 @@
 from __future__ import with_statement
 
 __author__ = 'Brian Blais <bblais@bryant.edu>'
-__version__ = (0, 1, 6)
+__version__ = (0, 1, 7)
 
 import sys
 from compiler import parse, walk
