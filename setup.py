@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='pynxc',
     version='0.1.7',
