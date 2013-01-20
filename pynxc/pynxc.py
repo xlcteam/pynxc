@@ -202,13 +202,4 @@ def main():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 3:
-        if sys.argv[1] == "ddd":
-            download(sys.argv[2])
-
-    if len(sys.argv) < 2:  # no args given, launch gui
-        from gui import *
-        app = Application(MainFrame, title="PyNXC")
-        app.Run()
-    else:
-        sys.exit(main())
+    sys.exit(main())
