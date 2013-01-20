@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(name='pynxc',
     version='0.1.7',
-    description='A Python to NXC Converter for programming'
+    description='A Python to NXC Converter for programming '
                   'LEGO MINDSTORMS Robots',
     author='Brian Blais',
     author_email='bblais@bryant.edu',
