@@ -12,4 +12,9 @@ setup(name='pynxc',
       maintainer_url='marek@suppa.sk',
       url='https://github.com/xlcteam/pynxc',
       packages=['pynxc'],
+      entry_points = {
+          'console_scripts': [
+            'pynxc = pynxc.main'
+          ]
+      }
 )
