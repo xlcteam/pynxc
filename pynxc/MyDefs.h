@@ -79,6 +79,7 @@ inline int sensor(int port)
     return SensorVal(port);
 }
 
+// The value '6' means OUT_ABC which was not used for performance reasons.
 inline int off(int port = 6)
 {
     return Off(port);
