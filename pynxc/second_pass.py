@@ -9,7 +9,7 @@ import os
 class SecondPassVisitor(ast_template.Visitor):
     """This object goes through and output the code"""
 
-    def __init__(self, fv, stream=sys.stdout, debug=False, root="./"):
+    def __init__(self, fv, stream=sys.stdout, debug=False, root="./", dry=False):
 
         ast_template.Visitor.__init__(self, stream, debug)
 

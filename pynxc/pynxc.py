@@ -22,7 +22,7 @@ pynxc_root = os.path.dirname(os.path.abspath(__file__)) \
     .replace("library.zip", "")
 
 
-def python_to_nxc(pyfile, nxcfile=None, debug=False):
+def python_to_nxc(pyfile, nxcfile=None, debug=False, dry=False):
 
     filename = pyfile
 
@@ -55,7 +55,7 @@ def python_to_nxc(pyfile, nxcfile=None, debug=False):
     else:
         fid = sys.stdout
 
-    v2 = SecondPassVisitor(v, debug=debug, stream=fid, root=pynxc_root)
+    v2 = SecondPassVisitor(v, debug=debug, stream=fid, root=pynxc_root, dry=dry)
     v2.v(ast)
     v2.flush_main()
     v2.flush()
@@ -128,6 +128,9 @@ def main():
     parser.add_option('-q', '--quiet', dest="quiet",
                       help='stay quiet (prints no output)', default=False,
                       action="store_true")
+    parser.add_option('-r', '--dry', dest="dry",
+                      help='dry run (without headers)', default=False,
+                      action="store_true")
     parser.add_option('--firmware', dest="firmware",
                       help='firmware version (105, 107, or 128)', default=config['firmware'])
     parser.add_option('--command', dest="nxc",
@@ -160,7 +163,12 @@ def main():
         nxc_filename = root + ".nxc"
         rxe_filename = root + ".rxe"
 
-        python_to_nxc(filename, nxc_filename, debug=options.debug)
+        python_to_nxc(filename, nxc_filename, debug=options.debug,
+                dry=options.dry)
+
+        if options.dry:
+            return
+
         if not options.quiet:
             print "Wrote %s." % (nxc_filename)
 
