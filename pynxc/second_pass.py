@@ -20,7 +20,7 @@ class SecondPassVisitor(ast_template.Visitor):
         self.semicolon = True
 
         self.writef('#include "NXCDefs.h"\n')
-        self.writef(open(os.path.join(root, "MyDefs.h"), 'rt').read())
+        self.writef(open(os.path.join(root, "defs.h"), 'rt').read())
 
         for d in fv.defines:
             self.writef('#define %s %s\n' % (d[0], d[1]))
