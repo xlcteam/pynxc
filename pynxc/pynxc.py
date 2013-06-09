@@ -194,7 +194,7 @@ def main():
             if options.download:
                 print "Downloading...",
                 cmd = options.nxc + " "
-                cmd = cmd + nxc_filename + " -I='%s/' -S=usb -I='%s/' v=%s -d" % (nxc_root,
+                cmd = cmd + nxc_filename + " -I='%s/' -S=usb -I='%s/' -v=%s -d" % (nxc_root,
                                                                                   pynxc_root,
                                                                                   options.firmware)
                 a = os.system(cmd)
