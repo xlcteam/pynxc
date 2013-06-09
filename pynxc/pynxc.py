@@ -199,7 +199,7 @@ def main():
                                                                                   options.firmware)
                 a = os.system(cmd)
                 nxtcom = os.path.join(nxc_root, 'nxtcom')
-                print nxtcom
+                if options.debug: print nxtcom
                 if os.path.exists(nxtcom):
                     cmd = '%s %s' % (nxtcom, rxe_filename)
                     a = os.system(cmd)
