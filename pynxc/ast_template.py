@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-__author__  = ''
-__version__ = (0,0)
+__author__ = ''
+__version__ = (0, 0)
 
 import sys
 import compiler.ast
@@ -8,35 +8,36 @@ from compiler.visitor import ASTVisitor
 from compiler import parse, walk
 from compiler.consts import *
 
-class Visitor(ASTVisitor): 
-    def __init__(self,stream=sys.stdout,debug=False):
+
+class Visitor(ASTVisitor):
+    def __init__(self, stream=sys.stdout, debug=False):
         self.v = lambda tree, visitor=self: walk(tree, visitor)
         self.stream = stream
         self.strcode = ""
-        self.debug=debug
+        self.debug = debug
         self.indents = 0
         ASTVisitor.__init__(self)
 
     def __str__(self):
         return self.strcode
-    
+
     def DEDENT(self):
-        self.indents -=1
+        self.indents -= 1
         self.NEWLINE()
-            
+
     def INDENT(self):
         self.indents += 1
         self.NEWLINE()
 
     def NEWLINE(self):
         self.write('\n')
-        self.write(' ' * 4 * self.indents )
+        self.write(' ' * 4 * self.indents)
 
     def write(self, data):
         if self.stream:
             self.stream.write(data)
         self.strcode += data
-        
+
     def visitBlock(self, block):
         if self.debug:
             print 'visitBlock'
@@ -63,7 +64,6 @@ class Visitor(ASTVisitor):
             if node.flags == OP_DELETE:
                 print "del ",
             print node.name
-        
 
     def visitAssTuple(self, node):
         if self.debug:
@@ -79,7 +79,7 @@ class Visitor(ASTVisitor):
         for i in range(len(node.nodes)):
             n = node.nodes[i]
             if self.debug:
-                print "  Node ",n
+                print "  Node ", n
             self.v(n)
         self.v(node.expr)
 
@@ -112,16 +112,12 @@ class Visitor(ASTVisitor):
     def visitCallFunc(self, node):
         if self.debug:
             print 'visitCallFunc'
-            print 'funcname: ',node.node.name
-            
-            
+            print 'funcname: ', node.node.name
+
         self.v(node.node)
         for i in range(len(node.args)):
             self.v(node.args[i])
 
-            
-            
-            
     def visitClass(self, node):
         if self.debug:
             print 'visitClass'
@@ -136,7 +132,7 @@ class Visitor(ASTVisitor):
     def visitConst(self, node):
         if self.debug:
             print 'visitConst'
-            print "Const",repr(node.value)
+            print "Const", repr(node.value)
 
     def visitContinue(self, node):
         if self.debug:
@@ -203,11 +199,11 @@ class Visitor(ASTVisitor):
     def visitIf(self, node):
         if self.debug:
             print 'visitIf'
-            
+
         (c, b) = node.tests[0]
         self.v(c)
         self.v(b)
-    
+
         for c, b in node.tests[1:]:
             self.v(c)
             self.v(b)
@@ -267,7 +263,7 @@ class Visitor(ASTVisitor):
     def visitName(self, node):
         if self.debug:
             print 'visitName'
-            print "Name",node.name
+            print "Name", node.name
 
     def visitNot(self, node):
         if self.debug:
@@ -356,11 +352,11 @@ class Visitor(ASTVisitor):
             print 'visitYield'
 
 
-        
-def ast2py(ast,debug=True):
+def ast2py(ast, debug=True):
     v = Visitor(debug)
     v.v(ast)
     return str(v)
+
 
 def main():
     filename = 'tests/implicit_main.py'
