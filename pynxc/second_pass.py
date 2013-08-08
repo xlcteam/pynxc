@@ -9,7 +9,7 @@ import os
 class SecondPassVisitor(ast_template.Visitor):
     """This object goes through and output the code"""
 
-    def __init__(self, fv, stream=sys.stdout, debug=False, root="./"):
+    def __init__(self, fv, stream=sys.stdout, debug=False, root="./", dry=False):
 
         ast_template.Visitor.__init__(self, stream, debug)
 
@@ -20,7 +20,7 @@ class SecondPassVisitor(ast_template.Visitor):
         self.semicolon = True
 
         self.writef('#include "NXCDefs.h"\n')
-        self.writef(open(os.path.join(root, "MyDefs.h"), 'rt').read())
+        self.writef(open(os.path.join(root, "defs.h"), 'rt').read())
 
         for d in fv.defines:
             self.writef('#define %s %s\n' % (d[0], d[1]))
