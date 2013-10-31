@@ -77,6 +77,9 @@ void set_sensor(int port, int type)
 
 #define on_fwd OnFwd
 #define on_rev OnRev
+#define rotate_motor RotateMotor
+
+#define random Random
 
 // The value '6' means OUT_ABC which was not used for performance reasons.
 inline int off(int port = 6)
