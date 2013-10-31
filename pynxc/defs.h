@@ -74,10 +74,7 @@ void set_sensors(int s1, int s2, int s3, int s4)
     DefineSensors(s1, s2, s3, s4);
 }
 
-inline int sensor(int port)
-{
-    return SensorVal(port);
-}
+#define sensor(port) SensorVal(port)
 
 // The value '6' means OUT_ABC which was not used for performance reasons.
 inline int off(int port = 6)
