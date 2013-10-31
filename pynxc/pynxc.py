@@ -165,6 +165,10 @@ def main():
         nxc_filename = root + ".nxc"
         rxe_filename = root + ".rxe"
 
+        if options.outfile:
+            nxc_filename = options.outfile
+            rxe_filename = options.outfile
+
         python_to_nxc(filename, nxc_filename, debug=options.debug,
                 dry=options.dry)
 
