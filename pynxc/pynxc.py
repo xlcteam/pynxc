@@ -113,6 +113,8 @@ def main():
     parser.add_option('-c', '--compile', dest="compile",
                       help='compile to nxc code only', default=False,
                       action="store_true")
+    parser.add_option('-o', '--output-file', dest="outfile",
+                      help='specify the output file')
     parser.add_option('--debug', dest="debug",
                       help='show debug messages', default=False,
                       action="store_true")
