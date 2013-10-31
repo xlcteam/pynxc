@@ -76,6 +76,9 @@ void set_sensors(int s1, int s2, int s3, int s4)
 
 #define sensor(port) SensorVal(port)
 
+#define lcd_clear ClearScreen
+#define lcd_reset ResetScreen
+
 // The value '6' means OUT_ABC which was not used for performance reasons.
 inline int off(int port = 6)
 {
