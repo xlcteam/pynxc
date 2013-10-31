@@ -75,6 +75,9 @@ void set_sensor(int port, int type)
 #define lcd_clear ClearScreen
 #define lcd_reset ResetScreen
 
+#define on_fwd OnFwd
+#define on_rev OnRev
+
 // The value '6' means OUT_ABC which was not used for performance reasons.
 inline int off(int port = 6)
 {
