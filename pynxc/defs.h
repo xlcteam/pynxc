@@ -69,11 +69,7 @@ void set_sensor(int port, int type)
     DefineSensors(SensorTypes[0], SensorTypes[1], SensorTypes[2], SensorTypes[3]);
 }
 
-void set_sensors(int s1, int s2, int s3, int s4)
-{
-    DefineSensors(s1, s2, s3, s4);
-}
-
+#define set_sensors(s1, s2, s3, s4) DefineSensors(s1, s2, s3, s4)
 #define sensor(port) SensorVal(port)
 
 #define lcd_clear ClearScreen
