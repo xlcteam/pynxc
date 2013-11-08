@@ -89,4 +89,31 @@ inline int off(int port = 6)
     return Off(port);
 }
 
+void lcd_print(string text)
+{
+    int _cur_lcd_line = 0;
+    int _line_position;
+    int _new_line = 0;
+    int _char_pos = 0;
+
+    for(int i = 0; i < StrLen(text); i++){
+        if (text[i] == '\n'){
+            _cur_lcd_line++;
+            _char_pos = 0;
+            continue;
+        }
+
+        if(_cur_lcd_line == 7){
+            lcd_clear();
+            _cur_lcd_line = 0;
+        } else {
+            _cur_lcd_line++;
+        }
+
+        _line_position = 64 - _cur_lcd_line * 8;
+        _char_pos++;
+        TextOut(_char_pos*8, line_position, text[i]);
+    }
+}
+
 
