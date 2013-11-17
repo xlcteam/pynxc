@@ -141,6 +141,8 @@ class FirstPassVisitor(ast_template.Visitor):
             for name in self.variables_assign:
                 val = node.expr.asList()[0]
                 self.variables[name].value = val
+
+                # assumes Integer by default
                 if isinstance(val, str):
                     self.variables[name].datatype = 'String'
                 if self.debug:
@@ -310,15 +312,5 @@ class FirstPassVisitor(ast_template.Visitor):
 
         if node.else_:
             self.v(node.else_)
-
-        self.main_appended = False
-
-    def visitAssign(self, node):
-        if not self.main_appended and self.scope[-1] == 'module':
-            self.main.append(node)
-            self.main_appended = True
-
-        for n in node.nodes:
-            self.v(n)
 
         self.main_appended = False
