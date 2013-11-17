@@ -10,7 +10,8 @@ class TextConversion(unittest.TestCase):
 
     def test_directories(self):
         inputs = glob.glob('tests/in/*.py')
-        
+        print("Running tests on inputs %s" % inputs)
+
         for input in inputs:
             nxc_filename = input.replace('.py', '.nxc') 
             python_to_nxc(input, nxc_filename, dry=True)
