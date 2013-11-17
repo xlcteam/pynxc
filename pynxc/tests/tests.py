@@ -4,6 +4,8 @@ import glob
 import sys
 sys.path.append("../")
 
+import os
+
 from pynxc import python_to_nxc
 
 class TextConversion(unittest.TestCase):
