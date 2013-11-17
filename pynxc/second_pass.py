@@ -33,7 +33,9 @@ class SecondPassVisitor(ast_template.Visitor):
         if self.debug:
             print "Module Variables Printing "
 
-        # print "module fn:", fv.functions['module'].variables
+        if self.debug:
+            print "module fn:", fv.functions['module'].variables
+
         self.print_variable_definitions(fv.functions['module'].variables)
         self.scope = ['module']
 

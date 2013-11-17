@@ -86,7 +86,7 @@ class FirstPassVisitor(ast_template.Visitor):
         if n.name not in self.variables:
             self.variables[n.name] = Variable(n.name)
             if self.debug:
-                print "MyAddVar", n.name
+                print "MyAddVar", n.name, n.getChildNodes()
 
     def visitReturn(self, node):
         # self.write("return ")
