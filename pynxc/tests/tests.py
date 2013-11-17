@@ -9,7 +9,9 @@ from pynxc import python_to_nxc
 class TextConversion(unittest.TestCase):
 
     def test_directories(self):
-        inputs = glob.glob('tests/in/*.py')
+        mypath = os.path.abspath(__file__)
+        inputs = glob.glob(mypath + '/in/*.py')
+
         print("Running tests on inputs %s" % inputs)
 
         for input in inputs:
