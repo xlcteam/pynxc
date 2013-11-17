@@ -13,7 +13,7 @@ class TextConversion(unittest.TestCase):
         
         for input in inputs:
             nxc_filename = input.replace('.py', '.nxc') 
-            python_to_nxc(input, nxc_filename)
+            python_to_nxc(input, nxc_filename, dry=True)
             
             testfile = nxc_filename.replace('tests/in/', 'tests/out/')
             
