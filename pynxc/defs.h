@@ -84,9 +84,9 @@ void set_sensor(int port, int type)
 #define wait Wait
 
 // The value '6' means OUT_ABC which was not used for performance reasons.
-inline int off(int port = 6)
+inline void off(int port = 6)
 {
-    return Off(port);
+    Off(port);
 }
 
 
