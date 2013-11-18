@@ -136,8 +136,13 @@ class FirstPassVisitor(ast_template.Visitor):
             print "varassign expr", node.expr, node.expr.asList()[0], type(a)
 
         if self.scope[-1] == 'module':
+            if not self.main_appended:
+                self.main.append(node)
+                self.main_appended = True
+
             if self.debug:
                 print "Module Variables"
+
             for name in self.variables_assign:
                 val = node.expr.asList()[0]
                 self.variables[name].value = val
