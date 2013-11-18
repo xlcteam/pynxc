@@ -4,14 +4,14 @@ import glob
 import os
 
 import sys
-sys.path.append(os.path.abspath(__file__ + '/../../'))
+sys.path.append(os.path.dirname(os.path.abspath(sys.argv[0] + '/../../')))
 
 from pynxc import python_to_nxc
 
 class TextConversion(unittest.TestCase):
 
     def test_directories(self):
-        mypath = os.path.abspath(__file__)
+        mypath = os.path.dirname(os.path.abspath(sys.argv[0]))
         inputs = glob.glob(mypath + '/in/*.py')
 
         print("Running tests on inputs %s" % inputs)
