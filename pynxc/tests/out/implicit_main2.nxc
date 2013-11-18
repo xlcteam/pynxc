@@ -1,5 +1,13 @@
-task main()  {
+void main_()  {
     TextOut(0, LCD_LINE1, "asd");
     Wait(2000);
+    
+}
+task main() {
+    for (x=0; x<10; x+=1)  {
+        NumOut(0, LCD_LINE1, x);
+        
+    }
+    
     
 }

@@ -67,7 +67,6 @@ class FirstPassVisitor(ast_template.Visitor):
             self.use_typedef = True
 
     def visitBlock(self, block):
-        print "in block"
         if self.debug:
             print "myvisitBlock"
         self.v(block)
@@ -254,6 +253,9 @@ class FirstPassVisitor(ast_template.Visitor):
         self.variables = old_self_variables
         self.scope.pop()
 
+        if 'main' in self.functions and self.main != []:
+            self.main_twice = True
+
         # remove those variables that are global
         remove_var = []
         for var in self.functions[node.name].variables:
@@ -285,7 +287,14 @@ class FirstPassVisitor(ast_template.Visitor):
         self.main_appended = False
 
     def visitFor(self, node):
+        if self.debug:
+            print "visitFor"
+
         if not self.main_appended and self.scope[-1] == 'module':
+
+            if self.debug:
+                print "appending to main", node
+
             self.main.append(node)
             self.main_appended = True
 

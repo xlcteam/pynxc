@@ -668,6 +668,8 @@ class SecondPassVisitor(ast_template.Visitor):
         self.write('task main()')
         self.INDENT()
 
+        if self.debug:
+            print 'Flushing main:', self.fv.main
         for node in self.fv.main:
             self.v(node)
             self.NEWLINE()
