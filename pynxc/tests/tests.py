@@ -1,10 +1,10 @@
 import unittest
 import glob
 
-import sys
-sys.path.append("../")
-
 import os
+
+import sys
+sys.path.append(os.path.abspath(__file__ + '/../../'))
 
 from pynxc import python_to_nxc
 
