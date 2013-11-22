@@ -91,28 +91,29 @@ inline int off(int port = 6)
 
 void lcd_print(string text)
 {
-    int _cur_lcd_line = 0;
-    int _line_position;
-    int _new_line = 0;
-    int _char_pos = 0;
+    int cur_lcd_line = 1;
+    int line_position = 0;
+    int new_line = 0;
+    int char_pos = 0;
+    string character;
 
     for(int i = 0; i < StrLen(text); i++){
-        if (text[i] == '\n'){
-            _cur_lcd_line++;
-            _char_pos = 0;
+        character = SubStr(text, i, 1);
+
+        if (SubStr(text, i, 1) == "\n"){
+            cur_lcd_line++;
+            char_pos = 0;
             continue;
         }
 
-        if(_cur_lcd_line == 7){
-            lcd_clear();
-            _cur_lcd_line = 0;
-        } else {
-            _cur_lcd_line++;
+        if(cur_lcd_line == 8){
+            ClearScreen();
+            cur_lcd_line = 1;
         }
 
-        _line_position = 64 - _cur_lcd_line * 8;
-        _char_pos++;
-        TextOut(_char_pos*8, line_position, text[i]);
+        line_position = 64 - cur_lcd_line * 8;
+        TextOut(char_pos*8, line_position, character);       
+        char_pos++;
     }
 }
 
