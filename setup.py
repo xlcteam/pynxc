@@ -16,7 +16,7 @@ setup(name='pynxc',
     include_package_data=True,
     entry_points = {
         'console_scripts': [
-          'pynxc = pynxc.main'
+          'pynxc = pynxc:main'
         ]
     }
 )
