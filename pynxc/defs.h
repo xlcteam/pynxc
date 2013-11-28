@@ -106,7 +106,7 @@ void lcd_print(string text)
             continue;
         }
 
-        if(_cur_lcd_line == 8){
+        if(_cur_lcd_line > 7){
             ClearScreen();
             _cur_lcd_line = 1;
         }
@@ -114,10 +114,10 @@ void lcd_print(string text)
         _line_position = 64 - _cur_lcd_line * 8;
         TextOut(char_pos*8, _line_position, character);       
         char_pos++;
+    }
 
-        if (i == StrLen(text)){
-            _cur_lcd_line = 1;
-        }
+    if (SubStr(text, StrLen(text)-1, 1) != "\n"){
+        _cur_lcd_line++;
     }
 }
 
