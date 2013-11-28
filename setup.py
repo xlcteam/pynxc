@@ -13,7 +13,11 @@ setup(name='pynxc',
     maintainer_email='marek@suppa.sk',
     url='https://github.com/xlcteam/pynxc',
     packages=['pynxc'],
-    include_package_data=True,
+    #include_package_data=True,
+
+    data_files=[('tests', ['pynxc/tests/tests.py']), 
+		('', ['pynxc/defs.h'])],
+
     entry_points = {
         'console_scripts': [
           'pynxc = pynxc:main'
