@@ -112,7 +112,7 @@ void lcd_print(string text)
         }
 
         _line_position = 64 - _cur_lcd_line * 8;
-        TextOut(char_pos*8, _line_position, character);       
+        TextOut(char_pos*6, _line_position, character);       
         char_pos++;
     }
 
