@@ -74,6 +74,7 @@ void set_sensor(int port, int type)
 
 #define lcd_clear ClearScreen
 #define lcd_reset ResetScreen
+#define lcd_print_at(x, y, text) TextOut(x*6, 64 - y*8, text)
 
 #define on_fwd OnFwd
 #define on_rev OnRev
