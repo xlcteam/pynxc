@@ -91,3 +91,35 @@ inline void off(int port = 6)
 }
 
 
+int _cur_lcd_line = 1;
+int _line_position = 0;
+void lcd_print(string text)
+{
+    string character;
+    int char_pos = 0;
+
+    for(int i = 0; i < StrLen(text); i++){
+        character = SubStr(text, i, 1);
+
+        if (SubStr(text, i, 1) == "\n"){
+            _cur_lcd_line++;
+            char_pos = 0;
+            continue;
+        }
+
+        if(_cur_lcd_line > 7){
+            ClearScreen();
+            _cur_lcd_line = 1;
+        }
+
+        _line_position = 64 - _cur_lcd_line * 8;
+        TextOut(char_pos*8, _line_position, character);       
+        char_pos++;
+    }
+
+    if (SubStr(text, StrLen(text)-1, 1) != "\n"){
+        _cur_lcd_line++;
+    }
+}
+
+
