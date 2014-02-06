@@ -110,7 +110,7 @@ class SecondPassVisitor(ast_template.Visitor):
 
                 else:
                     val = variables[var].value.__repr__()
-                    self.write('= %s' % val.replace("'", '"'))
+                    self.write(' = %s' % val.replace("'", '"'))
             self.write(';')
             self.NEWLINE()
 
@@ -121,7 +121,7 @@ class SecondPassVisitor(ast_template.Visitor):
                         val2 = variables2[var2].value.__repr__()
 
                         self.write('%s.%s' % (var, variables2[var2].name))
-                        self.write('= %s' % val2.replace("'", '"'))
+                        self.write(' = %s' % val2.replace("'", '"'))
                         self.write(';')
                         self.NEWLINE()
 
@@ -247,7 +247,7 @@ class SecondPassVisitor(ast_template.Visitor):
                 self.write(" ^ ")
 
     def visitBreak(self, node):
-        self.write("break; ")
+        self.write("break;")
         self.NEWLINE()
 
     def visitFunction(self, node):

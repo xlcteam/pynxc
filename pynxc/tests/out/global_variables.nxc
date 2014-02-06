@@ -1,7 +1,7 @@
-int STATE= 0;
-int THRESH2= 40;
-int THRESH= 40;
-int FINAL= 0;
+int STATE = 0;
+int THRESH2 = 40;
+int THRESH = 40;
+int FINAL = 0;
 task task_ruky()  {
     while (1)  {
         OnFwd(OUT_C, 65);
@@ -14,7 +14,7 @@ task task_ruky()  {
         Wait(500);
         Off(OUT_C);
         if ((STATE == 5))  {
-            break; 
+            break;
             
         }
         
