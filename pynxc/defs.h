@@ -5,6 +5,7 @@
 #define MIC 3
 #define TOUCH 4
 #define COMPASS 5
+#define GYRO 6
 
 #define None 0
 
@@ -23,6 +24,8 @@ inline int SensorVal(int s_) {
         return SensorUS(s_);
     } else if (t_ == COMPASS) {
         return SensorHTCompass(s_);
+    } else if (t_ == GYRO) {
+        return SensortHTGyro(s_);
     } else {
         return Sensor(s_);
     }
@@ -113,7 +116,7 @@ void lcd_print(string text)
         }
 
         _line_position = 64 - _cur_lcd_line * 8;
-        TextOut(char_pos*6, _line_position, character);       
+        TextOut(char_pos*6, _line_position, character);
         char_pos++;
     }
 
