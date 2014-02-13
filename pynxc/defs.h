@@ -45,23 +45,35 @@ void DefineSensors(int s1,int s2,int s3,int s4) {
 
     for (i=0; i<4; i++) {
 
-        if (sa[i]==None) {
-            SensorTypes[i]=None;
-        } else if (sa[i]==ULTRASONIC) {
-            SetSensorLowspeed(i);
-            SensorTypes[i]=ULTRASONIC;
-        } else if (sa[i]==LIGHT) {
-            SetSensorLight(i);
-            SensorTypes[i]=LIGHT;
-        } else if (sa[i]==SOUND) {
-            SetSensorSound(i);
-            SensorTypes[i]=SOUND;
-        } else if (sa[i]==TOUCH) {
-            SetSensor(i,SENSOR_TOUCH);
-            SensorTypes[i]=TOUCH;
-        } else if (sa[i] == COMPASS) {
-            SetSensorLowspeed(i);
-            SensorTypes[i] = COMPASS;
+        switch (sa[i]) {
+            case LIGHT:
+                SetSensorLight(i);
+                SensorTypes[i] = LIGHT;
+                break;
+
+            case ULTRASONIC:
+                SetSensorLowspeed(i);
+                SensorTypes[i] = ULTRASONIC;
+                break;
+
+            case SOUND:
+                SetSensorSound(i);
+                SensorTypes[i] = SOUND;
+                break;
+
+            case TOUCH:
+                SetSensor(i,SENSOR_TOUCH);
+                SensorTypes[i] = TOUCH;
+                break;
+
+            case GYRO:
+                SetSensorHTGyro(i);
+                SensorTypes[i] = GYRO;
+
+            default:
+                SensorTypes[i] = None;
+                break;
+
         }
     }
 }
