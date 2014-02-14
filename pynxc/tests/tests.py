@@ -17,6 +17,9 @@ class TextConversion(unittest.TestCase):
         print("Running tests on inputs %s" % inputs)
 
         for input in inputs:
+            if input.startswith('_'):
+                continue
+
             nxc_filename = input.replace('.py', '.nxc') 
             python_to_nxc(input, nxc_filename, dry=True)
             
