@@ -17,16 +17,16 @@ class TextConversion(unittest.TestCase):
         print("Running tests on inputs %s" % inputs)
 
         for input in inputs:
-            if input.startswith('_'):
+            if os.path.basename(input).startswith('_'):
                 continue
 
-            nxc_filename = input.replace('.py', '.nxc') 
+            nxc_filename = input.replace('.py', '.nxc')
             python_to_nxc(input, nxc_filename, dry=True)
-            
+
             testfile = nxc_filename.replace('tests/in/', 'tests/out/')
-            
+
             print("Testing %s" % input)
-            self.assertEqual(open(nxc_filename, 'r').read(), 
+            self.assertEqual(open(nxc_filename, 'r').read(),
                                 open(testfile, 'r').read())
 
 
