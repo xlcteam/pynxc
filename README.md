@@ -17,3 +17,5 @@ especially kids) can program his or her NXT robot easily. The aim of this
 project is to make this API as *Pythonic* as possible, so that if programming
 robots with Python is someone's first encounter with Python they can then jump
 right into the Python world.
+
+[![Build Status](https://travis-ci.org/xlcteam/pynxc.png?branch=master)](https://travis-ci.org/xlcteam/pynxc)
