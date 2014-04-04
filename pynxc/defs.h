@@ -84,6 +84,8 @@ void set_sensor(int port, int type)
     DefineSensors(SensorTypes[0], SensorTypes[1], SensorTypes[2], SensorTypes[3]);
 }
 
+#define Beep(duration) PlayTone(2600, duration)
+
 #define set_sensors(s1, s2, s3, s4) DefineSensors(s1, s2, s3, s4)
 #define sensor(port) SensorVal(port)
 
